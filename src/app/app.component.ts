@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon, PokemonResponse } from './interface/pokemon';
+import { PokemonResponse } from './interface/pokemon';
 import { PokemonService } from './service/pokemon.service';
 import {
   MatDialog,
@@ -16,8 +16,8 @@ import { IfStmt } from '@angular/compiler';
 })
 export class AppComponent implements OnInit {
   starterPokemon = ['bulbasaur', 'squirtle', 'charmander'];
-  cards: Pokemon[] = [];
-  only:boolean = false;
+  cards: PokemonResponse[] = [];
+  only: boolean = false;
   constructor(
     private pokemonService: PokemonService,
     public dialog: MatDialog
@@ -27,26 +27,21 @@ export class AppComponent implements OnInit {
       this.pokemonService
         .getPekemon(namePoke)
         .subscribe((data: PokemonResponse) => {
-          this.cards.push({
-            name: namePoke,
-            detail: data,
-          });
+          this.cards.push(data);
           console.log(this.cards);
         });
     }
   }
-  onClickcard(card: Pokemon) {
-    console.log(card);
-    // this.cards = this.cards.filter((data) => data === card);
+  onClickcard(card: PokemonResponse) {
     const dialogRef = this.dialog.open(SeletedComponent, {
       width: '250px',
       height: '250px',
-      data:{card: card, seleted: true} ,
+      data: { card: card, seleted: true },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
-      if(result === true){
+      if (result === true) {
         this.only = true;
         this.cards = this.cards.filter((data) => data === card);
       }
