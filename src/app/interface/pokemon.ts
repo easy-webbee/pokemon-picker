@@ -1,7 +1,3 @@
-export interface Pokemon{
-  name: string;
-  detail: PokemonResponse;
-}
 export interface PokemonResponse {
   abilities: Ability[];
   base_experience: number;

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Pokemon } from '../interface/pokemon';
+import { PokemonResponse } from '../interface/pokemon';
 
 @Component({
   selector: 'app-seleted',
@@ -8,10 +8,10 @@ import { Pokemon } from '../interface/pokemon';
   styleUrls: ['./seleted.component.css'],
 })
 export class SeletedComponent implements OnInit {
-  card!: Pokemon;
+  card!: PokemonResponse;
   constructor(
     public dialogRef: MatDialogRef<SeletedComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {card:Pokemon, seleted:boolean}
+    @Inject(MAT_DIALOG_DATA) public data: {card:PokemonResponse, seleted:boolean}
   ) {}
 
   ngOnInit(): void {

@@ -1,14 +1,15 @@
 <div class="card">
-  <div >
-    <img class="img" [src]="cards.detail.sprites.other.dream_world.front_default" alt="" />
+  <div>
+    <img class="img" [src]="cards.sprites.other.dream_world.front_default" alt="" />
   </div>
-  <div># {{ cards.detail.id }}</div>
-  <div># {{ cards.name }}</div>
-  <div>Height {{ cards.detail.height }}</div>
-  <div>Weight {{ cards.detail.weight }}</div>
+  <div>{{ cards.forms[0].name }}</div>
+  <div># {{ cards.id }}</div>
+
+  <div>Height {{ cards.height }}</div>
+  <div>Weight {{ cards.weight }}</div>
   <div>
     type:
-    <ul *ngFor="let type of cards.detail.types">
+    <ul *ngFor="let type of cards.types">
       <li>{{ type.type.name }}</li>
     </ul>
   </div>
