@@ -1,18 +1,16 @@
-.card{
-    margin: 5px;
-    
-    background-color: rgb(204, 189, 189);
-    width: 235px;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 15px;
-    box-shadow: 1px 5px blue;
+.card {
+  margin: 5px;
 
+  background-color: rgb(204, 189, 189);
+  width: 235px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  box-shadow: 1px 5px blue;
 }
-.img{
-    width: 230px;
-    height: 230px;
-    align-self: center;
-    
+.img {
+  max-width: 230px;
+  max-height: 230px;
+  align-self: center;
 }
