@@ -13,5 +13,9 @@ You will get the name and url link for each pokemon
 Using angluar material dialog to get seleted form user
 
 ## Image 
+# start
 ![Start](start.jpg)
-
+# choose
+![Start](selete.jpg)
+# Seleted
+![Start](afterSeleted.jpg)
