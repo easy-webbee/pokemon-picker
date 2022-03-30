@@ -1,0 +1,8 @@
+<h3>Do yo want to selete {{card.name}}</h3>
+<img [src]="card.detail.sprites.other.dream_world.front_default" alt="">
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.seleted" cdkFocusInitial>
+    Ok
+  </button>
+</div>

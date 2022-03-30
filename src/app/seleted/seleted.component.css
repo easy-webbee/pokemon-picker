@@ -1,0 +1,7 @@
+img{
+    width: 75px;
+    height: 75px;
+}
+::ng-deep .mat-dialog-container {
+    padding: 10px;
+}
