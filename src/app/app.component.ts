@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon, PokemonResponse } from './interface/pokemon';
+import { Form, Pokemon, PokemonResponse } from './interface/pokemon';
 import { PokemonService } from './service/pokemon.service';
 import {
   MatDialog,
@@ -18,22 +18,29 @@ export class AppComponent implements OnInit {
   starterPokemon = ['bulbasaur', 'squirtle', 'charmander'];
   cards: Pokemon[] = [];
   only:boolean = false;
+
+  allPoke: Form[]=[];
   constructor(
     private pokemonService: PokemonService,
     public dialog: MatDialog
   ) {}
   ngOnInit(): void {
-    for (let namePoke of this.starterPokemon) {
-      this.pokemonService
-        .getPekemon(namePoke)
-        .subscribe((data: PokemonResponse) => {
-          this.cards.push({
-            name: namePoke,
-            detail: data,
-          });
-          console.log(this.cards);
-        });
-    }
+    // for (let namePoke of this.starterPokemon) {
+    //   this.pokemonService
+    //     .getPekemon(namePoke)
+    //     .subscribe((data: PokemonResponse) => {
+    //       this.cards.push({
+    //         name: namePoke,
+    //         detail: data,
+    //       });
+    //       console.log(this.cards);
+    //     });
+    // }
+    
+    this.pokemonService.getAll().subscribe((data: any)=>{
+      this.allPoke = data.results;
+      console.log(this.allPoke)
+    })
   }
   onClickcard(card: Pokemon) {
     console.log(card);

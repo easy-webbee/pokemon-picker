@@ -12,4 +12,11 @@ export class PokemonService {
   getPekemon(name: string){
     return this.http.get([this.url,name].join('/')) as Observable<PokemonResponse>;
   }
+
+  getAll(){
+    return this.http.get(this.url) as Observable<any>
+  }
+  getEach(url: string){
+    return this.http.get(url) as Observable<PokemonResponse>;
+  }
 }
