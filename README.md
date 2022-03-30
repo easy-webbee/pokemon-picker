@@ -11,3 +11,7 @@ You will get the name and url link for each pokemon
 
 ## About
 Using angluar material dialog to get seleted form user
+
+## Image 
+![Start](start.jpg)
+
