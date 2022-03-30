@@ -7,7 +7,7 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { SeletedComponent } from './seleted/seleted.component';
-import { IfStmt } from '@angular/compiler';
+import { forkJoin, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,7 @@ import { IfStmt } from '@angular/compiler';
 })
 export class AppComponent implements OnInit {
   starterPokemon = ['bulbasaur', 'squirtle', 'charmander'];
+  pokemon$: Observable<PokemonResponse>[] = [];
   cards: PokemonResponse[] = [];
   only: boolean = false;
   constructor(
@@ -23,14 +24,12 @@ export class AppComponent implements OnInit {
     public dialog: MatDialog
   ) {}
   ngOnInit(): void {
-    for (let namePoke of this.starterPokemon) {
-      this.pokemonService
-        .getPekemon(namePoke)
-        .subscribe((data: PokemonResponse) => {
-          this.cards.push(data);
-          console.log(this.cards);
-        });
-    }
+    this.starterPokemon.forEach((ele) =>
+      this.pokemon$.push(this.pokemonService.getPekemon(ele))
+    );
+    forkJoin(this.pokemon$).subscribe((data: PokemonResponse[]) => {
+      this.cards = data;
+    });
   }
   onClickcard(card: PokemonResponse) {
     const dialogRef = this.dialog.open(SeletedComponent, {

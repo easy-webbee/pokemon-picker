@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { PokemonResponse } from '../interface/pokemon';
 
 @Injectable({
@@ -13,5 +13,21 @@ export class PokemonService {
     return this.http.get(
       [this.url, name].join('/')
     ) as Observable<PokemonResponse>;
+  }
+
+  getPokemon(name: string) {
+    return this.http.get([this.url, name].join('/')).pipe(
+      map((pokemonres: any) => {
+        const pokemon = {
+          id: pokemonres.id,
+          height: pokemonres.height,
+          weight: pokemonres.weight,
+          sprites: pokemonres.sprites,
+          spicies: pokemonres.spicies,
+          types: pokemonres.types,
+        };
+        return pokemon;
+      })
+    ) as Observable<any>;
   }
 }
