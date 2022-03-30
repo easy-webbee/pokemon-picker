@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PokemonResponse } from './interface/pokemon';
+import { Form, PokemonResponse } from './interface/pokemon';
 import { PokemonService } from './service/pokemon.service';
 import {
   MatDialog,
@@ -7,7 +7,6 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { SeletedComponent } from './seleted/seleted.component';
-
 
 @Component({
   selector: 'app-root',
@@ -18,35 +17,23 @@ export class AppComponent implements OnInit {
   starterPokemon = ['bulbasaur', 'squirtle', 'charmander'];
   cards: PokemonResponse[] = [];
   only: boolean = false;
+  allPoke: Form[] = [];
   constructor(
     private pokemonService: PokemonService,
     public dialog: MatDialog
   ) {}
   ngOnInit(): void {
-    // for (let namePoke of this.starterPokemon) {
-    //   this.pokemonService
-    //     .getPekemon(namePoke)
-    //     .subscribe((data: PokemonResponse) => {
-    //       this.cards.push({
-    //         name: namePoke,
-    //         detail: data,
-    //       });
-    //       console.log(this.cards);
-    //     });
-    // }
-    
-    // this.pokemonService.getAll().subscribe((data: any)=>{
-    //   this.allPoke = data.results;
-    //   console.log(this.allPoke)
-    // })
-    for (let namePoke of this.starterPokemon) {
-      this.pokemonService
-        .getPekemon(namePoke)
-        .subscribe((data: PokemonResponse) => {
-          this.cards.push(data);
-          console.log(this.cards);
-        });
-    }
+    this.pokemonService.getAll().subscribe((data: any) => {
+      this.allPoke = data.results;
+      console.log(this.allPoke);
+      for (let poke of this.allPoke) {
+        this.pokemonService
+          .getEach(poke.url)
+          .subscribe((data: PokemonResponse) => {
+            this.cards.push(data);
+          });
+      }
+    });
   }
   onClickcard(card: PokemonResponse) {
     const dialogRef = this.dialog.open(SeletedComponent, {
