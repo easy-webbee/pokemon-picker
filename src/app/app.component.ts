@@ -15,7 +15,7 @@ import { IfStmt } from '@angular/compiler';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  starterPokemon = ['bulbasaur', 'squirtle', 'charmander','ivysaur','charizard'];
+  starterPokemon = ['bulbasaur', 'squirtle', 'charmander'];
   cards: Pokemon[] = [];
   only:boolean = false;
   constructor(
